@@ -1,0 +1,194 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Deep Kuchhadiya — Admin Executive & Virtual Assistant</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f172a;
+    --card:#0b1220;
+    --muted:#94a3b8;
+    --accent1:#06b6d4;
+    --accent2:#7c3aed;
+    --glass: rgba(255,255,255,0.04);
+    --glass-2: rgba(255,255,255,0.02);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,-apple-system,Arial;background:linear-gradient(180deg,#071124 0%, #081827 60%);color:#e6eef8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}
+  .container{max-width:1100px;margin:36px auto;padding:28px;}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:16px; padding:28px; box-shadow: 0 8px 40px rgba(2,6,23,0.6); position:relative; overflow:hidden;}
+  /* floating gradient shapes */
+  .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.7;transform:translateZ(0);animation:float 8s ease-in-out infinite;}
+  .blob.a{width:280px;height:280px;right:-60px;top:-80px;background:radial-gradient(circle at 30% 30%, var(--accent1), transparent 40%);}
+  .blob.b{width:220px;height:220px;left:-60px;bottom:-60px;background:radial-gradient(circle at 70% 70%, var(--accent2), transparent 40%);animation-duration:9s;}
+  @keyframes float{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-14px) translateX(8px)}100%{transform:translateY(0) translateX(0)}}
+  header{display:flex;gap:18px;align-items:center;}
+  .avatar{width:92px;height:92px;border-radius:14px;background:linear-gradient(135deg,var(--accent2),var(--accent1));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:30px;color:white;box-shadow:0 6px 18px rgba(12,18,30,0.6);}
+  h1{margin:0;font-size:24px;letter-spacing:0.2px}
+  .sub{color:var(--muted);margin-top:6px;font-size:14px}
+  .meta{margin-top:10px;color:var(--muted);font-size:13px}
+  .hero{display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap;padding-top:8px}
+  .left{flex:1 1 420px;min-width:280px}
+  .right{width:320px;flex-shrink:0}
+  .cta{display:flex;gap:12px;margin-top:16px}
+  .btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:10px 14px;border-radius:10px;color:white;text-decoration:none;font-weight:700;box-shadow:0 8px 20px rgba(7,13,24,0.6);display:inline-flex;align-items:center;gap:8px}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--accent1);font-weight:600}
+  .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .skill{background:var(--glass);padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600;font-size:13px}
+  section{margin-top:24px}
+  .card-panel{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .list li{margin:8px 0;color:#d9e6ff}
+  .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+  .proj{background:var(--glass-2);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+  .proj h4{margin:4px 0 6px;font-size:15px}
+  .muted{color:var(--muted);font-size:13px}
+  footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
+  /* small screens */
+  @media (max-width:880px){.projects{grid-template-columns:1fr}.right{width:100%}}
+  /* subtle entrance animation */
+  .reveal{opacity:0;transform:translateY(8px);animation:reveal 0.8s ease forwards;animation-delay:0.2s}
+  .reveal.delay{animation-delay:0.45s}
+  @keyframes reveal{to{opacity:1;transform:none}}
+  /* contact card */
+  .contact-card{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  .contact-row{display:flex;gap:8px;align-items:center}
+  .icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.03);display:inline-flex;align-items:center;justify-content:center}
+  /* floating "hire me" pulse */
+  .pulse{position:fixed;right:22px;bottom:22px;background:linear-gradient(90deg,var(--accent1),var(--accent2));padding:14px 16px;border-radius:14px;color:white;font-weight:700;box-shadow:0 12px 36px rgba(11,22,40,0.6);cursor:pointer;display:flex;gap:10px;align-items:center;z-index:60}
+  .pulse::after{content:"";position:absolute;right:18px;bottom:18px;width:60px;height:60px;border-radius:50%;background:linear-gradient(90deg,var(--accent1),var(--accent2));opacity:0.08;filter:blur(12px);animation:ping 2.6s infinite}
+  @keyframes ping{0%{transform:scale(0.9);opacity:0.5}50%{transform:scale(1.05);opacity:0.25}100%{transform:scale(0.9);opacity:0.5}}
+  /* tiny scrollbar style for code display if any */
+  ::-webkit-scrollbar{height:8px;width:8px}
+  ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.04);border-radius:8px}
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="card" role="main">
+      <div class="blob a" aria-hidden="true"></div>
+      <div class="blob b" aria-hidden="true"></div>
+
+      <header class="reveal">
+        <div class="avatar">DK</div>
+        <div>
+          <h1>Deep Kuchhadiya</h1>
+          <div class="sub">Administrative Executive • Virtual Assistant</div>
+          <div class="meta">Rajkot, India • drkuchhadiya001@gmail.com • +91 96648 64798</div>
+        </div>
+      </header>
+
+      <div class="hero">
+        <div class="left reveal delay">
+          <p class="muted">Hello — I'm Deep. I provide dependable remote administrative support to startups, small businesses, and busy professionals. I handle scheduling, emails, data entry, reporting, and document preparation so you can focus on what matters.</p>
+
+          <div class="skills" aria-hidden="false">
+            <div class="skill">Advanced Excel</div>
+            <div class="skill">Google Sheets</div>
+            <div class="skill">Google Docs</div>
+            <div class="skill">PowerPoint</div>
+            <div class="skill">Data Entry</div>
+            <div class="skill">Calendar Mgmt</div>
+          </div>
+
+          <div class="cta">
+            <a class="btn" href="mailto:drkuchhadiya001@gmail.com">✉️ Hire / Email</a>
+            <a class="btn ghost" href="#" onclick="copyContact()">📋 Copy Contact</a>
+            <a class="btn ghost" href="#" onclick="downloadPDF()">⬇️ Download CV</a>
+          </div>
+
+          <section class="card-panel" aria-label="services">
+            <h3 style="margin:0">Services I Offer</h3>
+            <ul class="list" style="margin-top:8px">
+              <li>Calendar & email management — timely responses and follow-ups</li>
+              <li>Excel & Google Sheets — trackers, dashboards, data cleaning</li>
+              <li>Data entry, validation, and record-keeping with attention to detail</li>
+              <li>Google Docs & PowerPoint — professional reports and presentations</li>
+              <li>Vendor coordination, invoices, and facility admin support</li>
+            </ul>
+          </section>
+
+          <section aria-label="projects">
+            <h3 style="margin:6px 0 6px">Selected projects</h3>
+            <div class="projects">
+              <div class="proj">
+                <h4>Expense Tracker & Dashboard</h4>
+                <div class="muted">Monthly Excel tracker with summaries and pivot</div>
+              </div>
+              <div class="proj">
+                <h4>Client Contact Database</h4>
+                <div class="muted">Google Sheets with validation & filter views</div>
+              </div>
+              <div class="proj">
+                <h4>Presentation Templates</h4>
+                <div class="muted">PowerPoint slide deck for client meetings</div>
+              </div>
+              <div class="proj">
+                <h4>Calendar & Meeting Setup</h4>
+                <div class="muted">Google Calendar planning & reminders</div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <aside class="right reveal">
+          <div class="card-panel contact-card">
+            <h3 style="margin:0 0 6px">Contact & Availability</h3>
+            <div class="muted">Available for remote, part-time or long-term work.</div>
+
+            <div style="margin-top:8px">
+              <div class="contact-row"><div class="icon">✉️</div><div><strong>Email</strong><div class="muted">drkuchhadiya001@gmail.com</div></div></div>
+              <div class="contact-row"><div class="icon">📞</div><div><strong>Phone / WhatsApp</strong><div class="muted">+91 96648 64798</div></div></div>
+            </div>
+
+            <div style="margin-top:12px">
+              <strong>Rates</strong>
+              <div class="muted" style="margin-top:6px">Hourly or monthly — let's discuss. Competitive and flexible for long-term clients.</div>
+            </div>
+
+            <div style="margin-top:12px">
+              <strong>Languages</strong>
+              <div class="muted">Gujarati • Hindi • English</div>
+            </div>
+          </div>
+
+          <div style="height:14px"></div>
+
+          <div class="card-panel">
+            <h3 style="margin:0 0 6px">Skills & Tools</h3>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <div class="skill">Google Workspace</div>
+              <div class="skill">MS Office</div>
+              <div class="skill">Trello / Asana</div>
+              <div class="skill">Canva (basic)</div>
+              <div class="skill">Zoom / Slack</div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <footer class="reveal delay">
+        Built from CV — ready for remote clients. To host this page for free, upload the file `index.html` to GitHub Pages or use Netlify Drop. Want me to prepare the ZIP and host it for you? Ask and I'll help.
+      </footer>
+
+    </div>
+  </div>
+
+  <button class="pulse" onclick="location.href='mailto:drkuchhadiya001@gmail.com'">Hire Me — Let's Talk</button>
+
+<script>
+function copyContact(){
+  const txt = "Deep Kuchhadiya\nEmail: drkuchhadiya001@gmail.com\nPhone: +91 96648 64798";
+  navigator.clipboard.writeText(txt).then(()=> alert("Contact copied to clipboard."), ()=> alert("Please copy manually: " + txt));
+}
+function downloadPDF(){
+  alert("Open this page in your browser and press Ctrl/Cmd+P → Save as PDF to create a downloadable CV.");
+}
+</script>
+</body>
+</html>
